@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BTC // QUANT — 比特幣全方位技術分析、型態學、斐波那契與量化回測終端</title>
+  <meta name="description" content="專業比特幣 (BTC/USDT) 走勢分析工作站：即時與歷史K線圖、MA/EMA/RSI/MACD/布林通道、傳統技術分析（頭肩底、雙底、三角形型態、支撐壓力區間、斐波那契回撤）、機器學習走勢預測與策略回測。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <!-- 頂部市場狀態列 -->
+  <header class="top-header">
+    <div class="brand-group">
+      <div class="btc-badge">₿</div>
+      <div class="brand-titles">
+        <h1>
+          BTC / USDT
+          <span id="data-source-badge" class="badge badge-amber">高擬真型態引擎</span>
+        </h1>
+        <div class="brand-sub">比特幣傳統技術分析・支撐壓力・斐波那契・ML走勢預測・策略回測終端</div>
+      </div>
+    </div>
+
+    <div class="market-stats-strip">
+      <div class="stat-item">
+        <span class="stat-label">最新價格 (Last Price)</span>
+        <span id="stat-last-price" class="stat-value hero-price text-bull">$94,850.0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">區間漲跌 (Change)</span>
+        <span id="stat-change" class="stat-value text-bull">+14.97%</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">波段最高 (Swing High)</span>
+        <span id="stat-high" class="stat-value">$96,400</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">波段最低 (Swing Low)</span>
+        <span id="stat-low" class="stat-value">$72,400</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">ATR (14) 波動幅度</span>
+        <span id="stat-atr" class="stat-value text-amber">$1,840</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">多空綜合評分</span>
+        <span id="stat-stance" class="stat-value text-bull">78 / 100 強勢看多</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <label for="scenario-select" class="toolbar-label">行情結構情境：</label>
+      <select id="scenario-select" class="select-input">
+        <option value="bull_breakout">複合頭肩底突破 + 牛旗主升段</option>
+        <option value="double_bottom">W 雙重底反轉 + 回測頸線支撐</option>
+        <option value="triangle_squeeze">上升三角形收斂末端突破</option>
+        <option value="head_shoulders_top">高檔頭肩頂反轉 + 跌破頸線</option>
+      </select>
+      <button id="btn-fetch-live" class="action-btn" title="嘗試從公開 API 抓取最新即時 K 線">
+        <span>⚡ 抓取即時 API</span>
+      </button>
+      <button id="btn-resimulate" class="action-btn" title="產生微調波動的新樣本序列">
+        <span>↻ 隨機擾動樣本</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 圖表週期與圖層開關工具列 -->
+  <nav class="toolbar-bar" aria-label="圖表控制工具列">
+    <div class="toolbar-group" id="timeframe-group">
+      <span class="toolbar-label">時間週期</span>
+      <button class="seg-btn" data-tf="1H" id="tf-1h">1H</button>
+      <button class="seg-btn" data-tf="4H" id="tf-4h">4H</button>
+      <button class="seg-btn active" data-tf="1D" id="tf-1d">1D</button>
+      <button class="seg-btn" data-tf="1W" id="tf-1w">1W</button>
+    </div>
+
+    <div class="toolbar-group" id="overlay-group">
+      <span class="toolbar-label">技術分析與圖層疊加</span>
+      <button class="layer-pill active" data-layer="ma" id="toggle-ma">
+        <span class="dot"></span>均線 (SMA20 / EMA50)
+      </button>
+      <button class="layer-pill active" data-layer="bb" id="toggle-bb">
+        <span class="dot"></span>布林通道 (BB)
+      </button>
+      <button class="layer-pill active" data-layer="sr" id="toggle-sr">
+        <span class="dot"></span>支撐與壓力帶 (S/R)
+      </button>
+      <button class="layer-pill active" data-layer="fib" id="toggle-fib">
+        <span class="dot"></span>斐波那契回撤 (Fib)
+      </button>
+      <button class="layer-pill active" data-layer="patterns" id="toggle-patterns">
+        <span class="dot"></span>型態輪廓與頸線 (Patterns)
+      </button>
+      <button class="layer-pill active" data-layer="signals" id="toggle-signals">
+        <span class="dot"></span>買賣訊號 (BUY/SELL)
+      </button>
+      <button class="layer-pill active" data-layer="forecast" id="toggle-forecast">
+        <span class="dot"></span>ML 走勢預測扇形
+      </button>
+    </div>
+
+    <div class="toolbar-group" id="subchart-group">
+      <span class="toolbar-label">副圖指標</span>
+      <button class="seg-btn active" data-sub="macd" id="sub-macd">MACD (12,26,9)</button>
+      <button class="seg-btn" data-sub="rsi" id="sub-rsi">RSI (14)</button>
+      <button class="seg-btn" data-sub="volume" id="sub-vol">Volume 量能</button>
+    </div>
+  </nav>
+
+  <!-- 主工作區 -->
+  <main class="workspace-grid">
+    <!-- 左欄：互動式 K 線主圖 + 副圖 + 關鍵點位速覽 -->
+    <section class="chart-column">
+      <div class="ohlc-Crosshair-bar">
+        <div class="ohlc-values" id="crosshair-ohlc">
+          <span id="ch-time" class="text-amber">2026-11-13</span>
+          <span><span class="ohlc-tag">O</span> <strong id="ch-open">93,420</strong></span>
+          <span><span class="ohlc-tag">H</span> <strong id="ch-high">95,180</strong></span>
+          <span><span class="ohlc-tag">L</span> <strong id="ch-low">93,100</strong></span>
+          <span><span class="ohlc-tag">C</span> <strong id="ch-close">94,850</strong></span>
+          <span><span class="ohlc-tag">Vol</span> <strong id="ch-vol">2,410 BTC</strong></span>
+        </div>
+        <div class="indicator-legend">
+          <span class="legend-chip"><i class="swatch" style="background:#38bdf8"></i>SMA20: <strong id="leg-sma20">--</strong></span>
+          <span class="legend-chip"><i class="swatch" style="background:#f59e0b"></i>EMA50: <strong id="leg-ema50">--</strong></span>
+          <span class="legend-chip"><i class="swatch" style="background:#a855f7"></i>BB上下軌: <strong id="leg-bb">--</strong></span>
+          <span class="legend-chip"><i class="swatch" style="background:#10b981"></i>Fib 0.618: <strong id="leg-fib618">--</strong></span>
+        </div>
+      </div>
+
+      <!-- 主 K 線圖 Canvas -->
+      <div class="canvas-stage" id="main-chart-container">
+        <canvas id="main-chart-canvas"></canvas>
+      </div>
+
+      <!-- 副圖標題與 Canvas -->
+      <div class="subchart-header">
+        <span id="subchart-title" style="font-weight:600; color:var(--text-secondary);">
+          MACD (12, 26, 9) — 動能柱與訊號線交叉
+        </span>
+        <span id="subchart-readout" style="font-family:var(--font-mono); color:var(--text-primary);">
+          DIF: -- | DEA: -- | HIST: --
+        </span>
+      </div>
+      <div class="subchart-stage" id="sub-chart-container">
+        <canvas id="sub-chart-canvas"></canvas>
+      </div>
+
+      <!-- 圖表下方 4 格重點卡片 -->
+      <div class="bottom-insight-strip">
+        <div class="mini-card">
+          <div class="mini-card-title">
+            <span>最近上方壓力 (R1)</span>
+            <span class="badge badge-bear">RESISTANCE</span>
+          </div>
+          <div class="mini-card-main text-bear" id="card-r1-price">$96,400</div>
+          <div class="mini-card-sub" id="card-r1-meta">距離現價 +1.63% ・ 測試 5 次</div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-card-title">
+            <span>最近下方支撐 (S1)</span>
+            <span class="badge badge-bull">SUPPORT</span>
+          </div>
+          <div class="mini-card-main text-bull" id="card-s1-price">$91,200</div>
+          <div class="mini-card-sub" id="card-s1-meta">距離現價 -3.85% ・ 測試 7 次</div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-card-title">
+            <span>斐波那契黃金分割 (0.618)</span>
+            <span class="badge badge-amber">GOLDEN POCKET</span>
+          </div>
+          <div class="mini-card-main text-amber" id="card-fib-price">$81,568</div>
+          <div class="mini-card-sub" id="card-fib-meta">波段關鍵多空防守區間</div>
+        </div>
+
+        <div class="mini-card">
+          <div class="mini-card-title">
+            <span>ML 預測目標價 (14期後)</span>
+            <span class="badge badge-cyan">ENSEMBLE</span>
+          </div>
+          <div class="mini-card-main text-cyan" id="card-forecast-price">$98,420</div>
+          <div class="mini-card-sub" id="card-forecast-meta">預期報酬 +3.76% ・ 上漲機率 68%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右欄：深度分析分頁面板 -->
+    <aside class="inspector-column">
+      <div class="inspector-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="tab-classical" id="btn-tab-classical" role="tab">
+          型態・支撐・斐波
+        </button>
+        <button class="tab-btn" data-tab="tab-signals" id="btn-tab-signals" role="tab">
+          指標與買賣訊號
+        </button>
+        <button class="tab-btn" data-tab="tab-forecast" id="btn-tab-forecast" role="tab">
+          價格預測模型
+        </button>
+        <button class="tab-btn" data-tab="tab-backtest" id="btn-tab-backtest" role="tab">
+          策略歷史回測
+        </button>
+      </div>
+
+      <!-- 分頁 1：傳統技術分析（型態、支撐壓力、斐波那契） -->
+      <div class="tab-panel active" id="tab-classical" role="tabpanel">
+        <!-- 經典圖表型態辨識 -->
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">📐 經典圖表型態辨識 (Chart Patterns)</div>
+            <span class="badge badge-amber" id="pattern-count-badge">2 個型態</span>
+          </div>
+          <div id="classical-patterns-list"></div>
+        </div>
+
+        <!-- 支撐與壓力價格帶 -->
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🛡️ 關鍵支撐與壓力區間 (S/R Zones)</div>
+            <span style="font-size:11px; color:var(--text-muted);">依轉折點聚類與測試次數</span>
+          </div>
+          <div class="level-list" id="sr-levels-list"></div>
+        </div>
+
+        <!-- 斐波那契回撤與擴展點位 -->
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🌀 斐波那契回撤與擴展 (Fibonacci)</div>
+            <span id="fib-direction-badge" class="badge badge-cyan">上升波段</span>
+          </div>
+          <div style="font-size:11.5px; color:var(--text-secondary); margin-bottom:8px;" id="fib-swing-summary">
+            波段低點 $72,400 → 波段高點 $96,400
+          </div>
+          <div class="level-list" id="fib-levels-list"></div>
+        </div>
+
+        <!-- K 線組合反轉訊號 -->
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🕯️ 近期關鍵 K 線型態 (Price Action)</div>
+          </div>
+          <div id="candlestick-patterns-list"></div>
+        </div>
+      </div>
+
+      <!-- 分頁 2：技術指標與買賣訊號提示 -->
+      <div class="tab-panel" id="tab-signals" role="tabpanel">
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🧭 多空技術指標共振儀表板</div>
+            <span id="signal-score-badge" class="badge badge-bull">78 / 100</span>
+          </div>
+          <div class="meter-bar">
+            <div id="signal-meter-fill" class="meter-fill" style="width: 78%;"></div>
+          </div>
+          <div id="signal-reasons-list" style="display:flex; flex-direction:column; gap:5px; font-size:11.5px; color:var(--text-secondary); margin-top:8px;"></div>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">📊 當下指標即時讀數</div>
+          </div>
+          <div class="kpi-grid" id="indicator-snapshot-grid"></div>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🔔 歷史與近期買賣訊號提示 (點擊定位)</div>
+          </div>
+          <div id="signals-timeline-list"></div>
+        </div>
+      </div>
+
+      <!-- 分頁 3：價格預測模型 -->
+      <div class="tab-panel" id="tab-forecast" role="tabpanel">
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🔮 時間序列與蒙地卡羅走勢預測</div>
+            <span class="badge badge-cyan">ML / 統計混合</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="forecast-horizon">預測未來 K 線根數</label>
+              <select id="forecast-horizon" class="select-input">
+                <option value="7">未來 7 期 (短線)</option>
+                <option value="14" selected>未來 14 期 (波段)</option>
+                <option value="24">未來 24 期 (中長線)</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="forecast-mode">預測模型權重偏好</label>
+              <select id="forecast-mode" class="select-input">
+                <option value="ensemble" selected>Ensemble 混合動力 (推薦)</option>
+                <option value="trend_follow">Holt-Winters 趨勢外推</option>
+                <option value="mean_revert">均線中樞均值回歸</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="kpi-grid" id="forecast-kpi-grid"></div>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">📈 機率信賴區間分佈 (68% 1σ / 95% 2σ)</div>
+          </div>
+          <div id="forecast-table-container"></div>
+        </div>
+      </div>
+
+      <!-- 分頁 4：交易策略歷史回測 -->
+      <div class="tab-panel" id="tab-backtest" role="tabpanel">
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">⚙️ 策略回測參數設定</div>
+          </div>
+
+          <div class="form-field" style="margin-bottom:8px;">
+            <label for="bt-strategy">選擇量化交易策略</label>
+            <select id="bt-strategy" class="select-input">
+              <option value="ma_cross">雙均線黃金交叉策略 (SMA20 × EMA50)</option>
+              <option value="sr_fib_confluence">傳統支撐帶 + 布林下軌共振策略</option>
+              <option value="rsi_reversion">RSI 超賣均值回歸策略 (RSI 14)</option>
+              <option value="macd_momentum">MACD 動能柱突破策略</option>
+            </select>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="bt-capital">初始資金 (USDT)</label>
+              <input type="number" id="bt-capital" class="num-input" value="10000" min="1000" step="1000" />
+            </div>
+            <div class="form-field">
+              <label for="bt-sl">停損比例 Stop Loss (%)</label>
+              <input type="number" id="bt-sl" class="num-input" value="5.5" min="1" max="25" step="0.5" />
+            </div>
+            <div class="form-field">
+              <label for="bt-tp">停利比例 Take Profit (%)</label>
+              <input type="number" id="bt-tp" class="num-input" value="14.0" min="2" max="50" step="1" />
+            </div>
+            <div class="form-field" style="justify-content:flex-end;">
+              <button id="btn-run-backtest" class="action-btn" style="justify-content:center; background:var(--accent-amber-soft); color:var(--accent-amber); border-color:rgba(245,158,11,0.4); font-weight:700; height:31px;">
+                ▶ 執行回測
+              </button>
+            </div>
+          </div>
+          <div id="bt-strategy-desc" style="font-size:11px; color:var(--text-secondary);"></div>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">🏆 回測績效指標 (Performance)</div>
+            <span id="bt-alpha-badge" class="badge badge-bull">Alpha +0.0%</span>
+          </div>
+          <div class="kpi-grid" id="bt-kpi-grid"></div>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">💹 策略淨值曲線 vs. 買入持有 (Equity Curve)</div>
+          </div>
+          <div class="equity-canvas-wrap">
+            <canvas id="bt-equity-canvas"></canvas>
+          </div>
+        </div>
+
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">📋 歷史交易明細表 (Trade Log)</div>
+            <span id="bt-trade-count" style="font-size:11px; color:var(--text-muted);">0 筆交易</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="trade-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>進場價</th>
+                  <th>出場價</th>
+                  <th>報酬率</th>
+                  <th>進出場原因</th>
+                </tr>
+              </thead>
+              <tbody id="bt-trades-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>

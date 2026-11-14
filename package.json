@@ -1,0 +1,20 @@
+{
+  "name": "bitcoin-analyzer",
+  "version": "1.0.0",
+  "description": "Interactive Bitcoin Technical Analysis, Classical Chart Patterns, Fibonacci Retracement, ML Forecasting & Strategy Backtesting Terminal",
+  "type": "module",
+  "scripts": {
+    "dev": "npx -y serve . -l 3000",
+    "start": "python3 -m http.server 3000"
+  },
+  "keywords": [
+    "bitcoin",
+    "technical-analysis",
+    "candlestick",
+    "fibonacci",
+    "chart-patterns",
+    "backtesting",
+    "price-prediction"
+  ],
+  "license": "MIT"
+}
