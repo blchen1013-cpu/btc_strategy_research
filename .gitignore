@@ -1,0 +1,16 @@
+# Python caches & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+
+# Secrets & local OS files
+.env
+.env.*
+.DS_Store
+Thumbs.db
+
+# Node dependencies (if installed locally)
+node_modules/

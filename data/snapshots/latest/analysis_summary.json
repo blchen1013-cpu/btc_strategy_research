@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "requested_as_of_utc": "2026-11-14T07:57:44Z",
+    "effective_ohlcv_utc": "2026-11-14T00:00:00Z",
+    "effective_mvrv_utc": "2026-11-14T00:00:00Z",
+    "mvrv_lag_days": 0,
+    "replay_mode": "LIVE",
+    "live_spot_price": 67121.4,
+    "live_spot_status": "OK",
+    "live_spot_age_sec": 868,
+    "narrative_status": "VERIFIED_OVERLAY",
+    "manifest_sha256": "311058386d01d9a7ffb1c435861dee081d1ab9f3822efbfdcd8f4c76f519b900"
+  },
+  "dimensions_snapshot": {
+    "valuation": {
+      "close": 68249.27,
+      "sma200w": 67751.55,
+      "mayer_multiple": 0.9345,
+      "cycle_ath": 126198.07,
+      "ath_dd_pct": -45.92,
+      "lgc_lower_band": 46657.47
+    },
+    "halving": {
+      "era_status": "ERA_4",
+      "last_halving_date": "2024-04-20",
+      "days_since_halving": 937,
+      "next_est_date": "2028-02-06",
+      "cycle_progress_pct": 67.56,
+      "historical_cycle_offsets": [
+        {
+          "peak_date": "2011-06-08",
+          "trough_date": "2011-11-18",
+          "halving_date": null,
+          "days_from_halving_to_peak": null,
+          "days_from_halving_to_trough": null
+        },
+        {
+          "peak_date": "2013-12-04",
+          "trough_date": "2015-01-14",
+          "halving_date": "2012-11-28",
+          "days_from_halving_to_peak": 371,
+          "days_from_halving_to_trough": 777
+        },
+        {
+          "peak_date": "2017-12-17",
+          "trough_date": "2018-12-15",
+          "halving_date": "2016-07-09",
+          "days_from_halving_to_peak": 526,
+          "days_from_halving_to_trough": 889
+        },
+        {
+          "peak_date": "2021-11-10",
+          "trough_date": "2022-11-21",
+          "halving_date": "2020-05-11",
+          "days_from_halving_to_peak": 548,
+          "days_from_halving_to_trough": 924
+        }
+      ]
+    },
+    "sentiment": {
+      "date_utc": "2026-11-13",
+      "fng_value": 20,
+      "fng_class": "Extreme Fear",
+      "fng_stale_days": 0
+    },
+    "momentum_diag": {
+      "ema50": 78113.86,
+      "rsi14": 24.99,
+      "macd_dif": -2529.17,
+      "macd_dea": -1819.47,
+      "macd_hist": -709.7,
+      "bb_upper": 82964.21,
+      "bb_mid": 76585.44,
+      "bb_lower": 70206.67,
+      "atr14": 2377.03,
+      "vol_ratio_20": 1.6004
+    },
+    "structural_skeleton": {
+      "sr_supports": [
+        {
+          "code": "S1",
+          "price": 66994.58,
+          "band_low": 66659.61,
+          "band_high": 67329.55,
+          "touches": 38,
+          "score": 13.5,
+          "dist_pct": -1.8384
+        },
+        {
+          "code": "S2",
+          "price": 65174.69,
+          "band_low": 64840.94,
+          "band_high": 65508.43,
+          "touches": 37,
+          "score": 15.25,
+          "dist_pct": -4.5049
+        },
+        {
+          "code": "S3",
+          "price": 62422.49,
+          "band_low": 62110.38,
+          "band_high": 62734.6,
+          "touches": 32,
+          "score": 11.0,
+          "dist_pct": -8.5375
+        }
+      ],
+      "sr_resistances": [
+        {
+          "code": "R1",
+          "price": 71527.97,
+          "band_low": 70164.06,
+          "band_high": 72891.88,
+          "touches": 43,
+          "score": 18.75,
+          "dist_pct": 4.804
+        },
+        {
+          "code": "R2",
+          "price": 75178.64,
+          "band_low": 73741.55,
+          "band_high": 76615.73,
+          "touches": 64,
+          "score": 31.0,
+          "dist_pct": 10.153
+        },
+        {
+          "code": "R3",
+          "price": 81361.9,
+          "band_low": 79709.88,
+          "band_high": 83013.92,
+          "touches": 59,
+          "score": 28.75,
+          "dist_pct": 19.2128
+        }
+      ],
+      "macro_log_fib": {
+        "low": 15599.05,
+        "ath": 126198.07,
+        "levels": [
+          {
+            "ratio": 0.236,
+            "label": "0.236 淺幅回撤",
+            "price": 77050.49,
+            "dist_pct": 12.8957
+          },
+          {
+            "ratio": 0.382,
+            "label": "0.382 中繼支撐",
+            "price": 56782.44,
+            "dist_pct": -16.8014
+          },
+          {
+            "ratio": 0.5,
+            "label": "0.500 對數中軸",
+            "price": 44368.57,
+            "dist_pct": -34.9904
+          },
+          {
+            "ratio": 0.618,
+            "label": "0.618 黃金分割",
+            "price": 34668.63,
+            "dist_pct": -49.2029
+          },
+          {
+            "ratio": 0.786,
+            "label": "0.786 深度價值防守",
+            "price": 24400.59,
+            "dist_pct": -64.2478
+          }
+        ]
+      },
+      "recent_daily_pivots": [
+        {
+          "date_utc": "2026-09-03",
+          "price": 82262.21,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-09-15",
+          "price": 74944.59,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-09-21",
+          "price": 87363.76,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-09-28",
+          "price": 82570.72,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-10-02",
+          "price": 87146.35,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-10-08",
+          "price": 80336.91,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-10-15",
+          "price": 79735.86,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-10-21",
+          "price": 84840.05,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-10-29",
+          "price": 81889.95,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-11-04",
+          "price": 81079.79,
+          "kind": "HIGH"
+        }
+      ],
+      "recent_weekly_pivots": [
+        {
+          "date_utc": "2025-11-17",
+          "price": 80659.81,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-01-12",
+          "price": 97860.6,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-02-02",
+          "price": 60074.2,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-03-16",
+          "price": 75988.4,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-03-23",
+          "price": 64971.71,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-05-04",
+          "price": 82792.21,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-06-29",
+          "price": 57747.77,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-07-20",
+          "price": 66910.06,
+          "kind": "HIGH"
+        },
+        {
+          "date_utc": "2026-09-14",
+          "price": 74944.59,
+          "kind": "LOW"
+        },
+        {
+          "date_utc": "2026-09-21",
+          "price": 87363.76,
+          "kind": "HIGH"
+        }
+      ],
+      "macro_invalidation_levels": {
+        "cycle_ath": 126198.07,
+        "zone_low": 43095.96,
+        "p_anchor": 49431.44,
+        "dual_key_weekly_hl": null,
+        "track_b_active_stop": null,
+        "track_b_circuit_breaker": null
+      }
+    }
+  },
+  "track_a": {
+    "action": "WAIT_LEFT_TARGET",
+    "backtest_cycle_deployed": false,
+    "backtest_cycle_entry": null,
+    "l1_score": 1,
+    "l1_flags": {
+      "sma200w_ok": true,
+      "mvrv_ok": false,
+      "dd_ok": false
+    },
+    "realized_price": 53762.42,
+    "zone_low": 43095.96,
+    "zone_high": 51315.52,
+    "p_anchor": 49431.44,
+    "t0_date": "2025-10-06",
+    "t_max_days": 438,
+    "elapsed_days": 403,
+    "calibrated_dd_floor_pct": -72.32,
+    "dual_key_active": false,
+    "backtest_stats": {
+      "left_market_events": [
+        {
+          "entry_date": "2011-09-10",
+          "entry_price": 4.7428,
+          "early_burn_in": true,
+          "mae_pct": -55.616,
+          "ret_1y_pct": 132.7715,
+          "ret_2y_pct": 2451.5688,
+          "ret_3y_pct": 9863.7619,
+          "ret_next_cycle_peak_pct": 23781.536
+        },
+        {
+          "entry_date": "2015-01-15",
+          "entry_price": 176.897,
+          "early_burn_in": true,
+          "mae_pct": 0.0,
+          "ret_1y_pct": 105.5451,
+          "ret_2y_pct": 361.7245,
+          "ret_3y_pct": 7669.7662,
+          "ret_next_cycle_peak_pct": 11233.6358
+        },
+        {
+          "entry_date": "2018-12-08",
+          "entry_price": 3421.9104,
+          "early_burn_in": false,
+          "mae_pct": -6.7391,
+          "ret_1y_pct": 120.6145,
+          "ret_2y_pct": 459.7249,
+          "ret_3y_pct": 1378.6707,
+          "ret_next_cycle_peak_pct": 1906.2531
+        },
+        {
+          "entry_date": "2022-06-14",
+          "entry_price": 22487.9863,
+          "early_burn_in": false,
+          "mae_pct": -30.6339,
+          "ret_1y_pct": 11.5017,
+          "ret_2y_pct": 196.2605,
+          "ret_3y_pct": 370.8247,
+          "ret_next_cycle_peak_pct": 460.0587
+        }
+      ],
+      "p_anchor_limit_events": [
+        {
+          "entry_date": "2011-09-10",
+          "entry_price": 4.7428,
+          "early_burn_in": true,
+          "mae_pct": -55.616,
+          "ret_1y_pct": 132.7715,
+          "ret_2y_pct": 2451.5688,
+          "ret_3y_pct": 9863.7619,
+          "ret_next_cycle_peak_pct": 23781.536
+        },
+        {
+          "entry_date": "2015-01-14",
+          "entry_price": 183.1586,
+          "early_burn_in": true,
+          "mae_pct": -6.3598,
+          "ret_1y_pct": 134.4669,
+          "ret_2y_pct": 348.9758,
+          "ret_3y_pct": 7724.6457,
+          "ret_next_cycle_peak_pct": 10846.178
+        },
+        {
+          "entry_date": "2019-01-14",
+          "entry_price": 3557.311,
+          "early_burn_in": false,
+          "mae_pct": -4.6745,
+          "ret_1y_pct": 147.6625,
+          "ret_2y_pct": 946.9088,
+          "ret_3y_pct": 1094.9046,
+          "ret_next_cycle_peak_pct": 1829.8898
+        },
+        {
+          "entry_date": "2022-06-14",
+          "entry_price": 20951.8404,
+          "early_burn_in": false,
+          "mae_pct": -25.5481,
+          "ret_1y_pct": 19.6767,
+          "ret_2y_pct": 217.9817,
+          "ret_3y_pct": 405.3446,
+          "ret_next_cycle_peak_pct": 501.1211
+        }
+      ],
+      "dual_key_events": [],
+      "summary_all": {
+        "primary_n_events": 4,
+        "primary_mean_mae_pct": -23.2473,
+        "primary_worst_mae_pct": -55.616,
+        "primary_mean_ret_1y_pct": 92.6082,
+        "primary_mean_ret_2y_pct": 867.3197,
+        "primary_mean_ret_3y_pct": 4820.7559,
+        "primary_mean_ret_next_peak_pct": 9345.3709,
+        "limit_n_events": 4,
+        "limit_mean_mae_pct": -23.0496
+      },
+      "summary_oos": {
+        "primary_n_events": 2,
+        "primary_mean_mae_pct": -18.6865,
+        "primary_worst_mae_pct": -30.6339,
+        "primary_mean_ret_1y_pct": 66.0581,
+        "primary_mean_ret_2y_pct": 327.9927,
+        "primary_mean_ret_3y_pct": 874.7477,
+        "primary_mean_ret_next_peak_pct": 1183.1559,
+        "limit_n_events": 2,
+        "limit_mean_mae_pct": -15.1113
+      }
+    }
+  },
+  "track_b": {
+    "action": "WAIT_SIGNAL",
+    "wk_warn_50w_active": true,
+    "wk_warn_200w_active": false,
+    "active_setups_on_bar": [],
+    "rejected_reason": null,
+    "risk_budget_eff": 0.05,
+    "position_size_pct": null,
+    "entry_ref_price": null,
+    "structural_stop": null,
+    "active_stop": null,
+    "circuit_breaker_price": null,
+    "gap_buffer_pct": null,
+    "backtest_overall": {
+      "closed_stats": {
+        "n_closed": 60,
+        "win_rate_pct": 40.0,
+        "payoff_ratio": 9.2266,
+        "ev_r": 1.8176,
+        "total_return_pct": 3106.4894,
+        "track_max_dd_pct": 37.4365,
+        "single_trade_worst_pct": -9.99
+      },
+      "mtm_stats": {
+        "mtm_total_return_pct": 3106.4894,
+        "mtm_max_dd_pct": 37.4365,
+        "open_trades_count": 0
+      }
+    },
+    "backtest_by_setup": {
+      "SW-1": {
+        "closed_stats": {
+          "n_closed": 43,
+          "win_rate_pct": 30.2326,
+          "payoff_ratio": 15.4716,
+          "ev_r": 2.5001,
+          "total_return_pct": 1571.5843,
+          "track_max_dd_pct": 37.7508,
+          "single_trade_worst_pct": -9.99
+        },
+        "mtm_stats": {
+          "mtm_total_return_pct": 1571.5843,
+          "mtm_max_dd_pct": 37.7508,
+          "open_trades_count": 0
+        }
+      },
+      "SW-2": {
+        "closed_stats": {
+          "n_closed": 28,
+          "win_rate_pct": 57.1429,
+          "payoff_ratio": 8.7226,
+          "ev_r": 1.7544,
+          "total_return_pct": 1009.4609,
+          "track_max_dd_pct": 32.505,
+          "single_trade_worst_pct": -6.3894
+        },
+        "mtm_stats": {
+          "mtm_total_return_pct": 1009.4609,
+          "mtm_max_dd_pct": 32.505,
+          "open_trades_count": 0
+        }
+      },
+      "SW-3": {
+        "closed_stats": {
+          "n_closed": 16,
+          "win_rate_pct": 43.75,
+          "payoff_ratio": 2.7803,
+          "ev_r": 0.3904,
+          "total_return_pct": 41.8605,
+          "track_max_dd_pct": 20.2403,
+          "single_trade_worst_pct": -4.3531
+        },
+        "mtm_stats": {
+          "mtm_total_return_pct": 41.8605,
+          "mtm_max_dd_pct": 20.2403,
+          "open_trades_count": 0
+        }
+      }
+    },
+    "backtest_by_wk_warn_50w": {
+      "ACTIVE": {
+        "closed_stats": {
+          "n_closed": 30,
+          "win_rate_pct": 33.3333,
+          "payoff_ratio": 4.9686,
+          "ev_r": 0.6403,
+          "trade_compounded_return_pct": 142.6555,
+          "trade_curve_max_dd_pct": 19.0709,
+          "single_trade_worst_pct": -9.99
+        }
+      },
+      "INACTIVE": {
+        "closed_stats": {
+          "n_closed": 30,
+          "win_rate_pct": 46.6667,
+          "payoff_ratio": 13.6199,
+          "ev_r": 2.9949,
+          "trade_compounded_return_pct": 1221.4164,
+          "trade_curve_max_dd_pct": 11.1263,
+          "single_trade_worst_pct": -5.6004
+        }
+      }
+    },
+    "backtest_by_wk_warn_200w": {
+      "ACTIVE": {
+        "closed_stats": {
+          "n_closed": 11,
+          "win_rate_pct": 45.4545,
+          "payoff_ratio": 7.3549,
+          "ev_r": 1.6329,
+          "trade_compounded_return_pct": 119.4171,
+          "trade_curve_max_dd_pct": 14.1969,
+          "single_trade_worst_pct": -6.3894
+        }
+      },
+      "INACTIVE": {
+        "closed_stats": {
+          "n_closed": 49,
+          "win_rate_pct": 38.7755,
+          "payoff_ratio": 9.719,
+          "ev_r": 1.8591,
+          "trade_compounded_return_pct": 1361.3669,
+          "trade_curve_max_dd_pct": 25.098,
+          "single_trade_worst_pct": -9.99
+        }
+      }
+    },
+    "backtest_wk_gated_causal": {
+      "closed_stats": {
+        "n_closed": 60,
+        "win_rate_pct": 40.0,
+        "payoff_ratio": 9.494,
+        "ev_r": 1.8275,
+        "total_return_pct": 2151.5156,
+        "track_max_dd_pct": 32.3613,
+        "single_trade_worst_pct": -5.6004
+      },
+      "mtm_stats": {
+        "mtm_total_return_pct": 2151.5156,
+        "mtm_max_dd_pct": 32.3613,
+        "open_trades_count": 0
+      }
+    },
+    "backtest_streak_throttled": {
+      "closed_stats": {
+        "n_closed": 60,
+        "win_rate_pct": 40.0,
+        "payoff_ratio": 9.494,
+        "ev_r": 1.8275,
+        "total_return_pct": 1763.7164,
+        "track_max_dd_pct": 32.3613,
+        "single_trade_worst_pct": -5.6004
+      },
+      "mtm_stats": {
+        "mtm_total_return_pct": 1763.7164,
+        "mtm_max_dd_pct": 32.3613,
+        "open_trades_count": 0
+      }
+    }
+  }
+}

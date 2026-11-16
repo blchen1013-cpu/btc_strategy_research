@@ -1,0 +1,35 @@
+{
+  "cross_check_status": "VERIFIED",
+  "files": {
+    "daily_ohlcv.csv": {
+      "rows": 4441,
+      "sha256": "3b3c0180bd9013f39e4b4ae34baa3bebca9d9fc34b85a02bb6639221932eb8c3"
+    },
+    "fng.csv": {
+      "rows": 3204,
+      "sha256": "4e7e9d79f6c8b4f33df59cdb2210677b0c45766f87ff12fed13d236242c21cc0"
+    },
+    "mvrv.csv": {
+      "rows": 5963,
+      "sha256": "c2e160fc1809abb3a84aaeff13c75e42be5b1bf54a260afcf530510996b0df1f"
+    },
+    "weekly_ohlcv.csv": {
+      "rows": 851,
+      "sha256": "0c4bd2cf6f9015a89ea7189cadbfc7e4d9789aada902c5b628985b1a18344568"
+    }
+  },
+  "fng_status": "OK",
+  "manifest_sha256": "311058386d01d9a7ffb1c435861dee081d1ab9f3822efbfdcd8f4c76f519b900",
+  "mvrv_effective_as_of_ts": 1794614400,
+  "mvrv_effective_as_of_utc": "2026-11-14T00:00:00Z",
+  "ohlcv_effective_as_of_ts": 1794614400,
+  "ohlcv_effective_as_of_utc": "2026-11-14T00:00:00Z",
+  "overlap_diffs": {
+    "bs_median_pct": 0.019736,
+    "bs_p99_pct": 0.196127,
+    "cm_vs_yh_median_pct": 0.147521,
+    "cm_vs_yh_p99_pct": 2.169931
+  },
+  "requested_as_of_utc": "2026-11-14T07:57:44Z",
+  "schema_version": "1.0"
+}
